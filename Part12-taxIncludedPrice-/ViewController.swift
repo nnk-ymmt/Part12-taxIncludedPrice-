@@ -7,7 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+
+    @IBOutlet private weak var taxExcludedPriceTextField: UITextField!
+    @IBOutlet private weak var taxRateTextField: UITextField!
+    @IBOutlet private weak var taxIncludedPriceTextField: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
