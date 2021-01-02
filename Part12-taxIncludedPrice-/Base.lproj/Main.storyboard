@@ -72,6 +72,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCq-lP-GU6">
                                         <rect key="frame" x="119.5" y="102" width="31" height="30"/>
                                         <state key="normal" title="計算"/>
+                                        <connections>
+                                            <action selector="calculate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jwQ-xp-YYV"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="pMA-nF-obs">
                                         <rect key="frame" x="0.0" y="149" width="270" height="20.5"/>
@@ -111,7 +114,7 @@
                     </view>
                     <connections>
                         <outlet property="taxExcludedPriceTextField" destination="QgH-gG-2Su" id="JcZ-ov-e5V"/>
-                        <outlet property="taxIncludedPriceTextField" destination="Pla-zt-Dbx" id="uuL-hZ-27d"/>
+                        <outlet property="taxIncludedPriceLabel" destination="Pla-zt-Dbx" id="c4e-vP-7cv"/>
                         <outlet property="taxRateTextField" destination="b3x-mk-nUI" id="k1z-Sz-SZP"/>
                     </connections>
                 </viewController>
