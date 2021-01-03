@@ -15,13 +15,13 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let taxRate = UserDefaults.standard.integer(forKey: "taxRate")
+        let taxRate = UserDefaults.standard.float(forKey: "taxRate")
         taxRateTextField.text = String(taxRate)
     }
 
     @IBAction private func calculate(_ sender: Any) {
         guard let taxExcludedPrice = Int(taxExcludedPriceTextField.text ?? ""),
-           let taxRate = Float(taxRateTextField.text ?? "") else {
+              let taxRate = Float(taxRateTextField.text ?? "") else {
             return
         }
         let taxIncludedPrice = Int(Float(taxExcludedPrice) * ( 1 + taxRate / 100))
