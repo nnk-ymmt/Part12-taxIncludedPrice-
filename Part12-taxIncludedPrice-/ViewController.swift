@@ -25,7 +25,7 @@ final class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let taxRate = taxRateRepository.load()
         taxRateTextField.text = String(taxRate)
     }
@@ -35,34 +35,39 @@ final class ViewController: UIViewController {
               let taxRate = Float(taxRateTextField.text ?? "") else {
             return
         }
-        
         let taxIncludedPrice = Int(Float(taxExcludedPrice) * ( 1 + taxRate / 100))
         taxIncludedPriceLabel.text = String(taxIncludedPrice)
-
         taxRateRepository.save(taxRate: taxRate)
     }
 }
 
 struct TaxRateRepository: TaxRateRepositoryProtocol {
     private let key = "taxRate"
-    
+
     func load() -> Float {
         return UserDefaults.standard.float(forKey: key)
     }
-    
+
     func save(taxRate: Float) {
         UserDefaults.standard.set(taxRate, forKey: key)
     }
 }
 
 /// 特定の税率が保存されている時の挙動をテストしたい時に使う
+
+/// 例えば、マイナスの税率を保存したらアプリが起動しなくなってしまったという不具合が出た場合、
+/// 実際にUserDefaultsにマイナスの税率を保存してみても良いが、
+/// FakeTaxRateRepositoryを使うとそれを容易に再現できたりするメリットがある
+
+/// 税率をサーバーから取得するような仕様の場合、サーバー側が完成していなくてもアプリの開発を進められるというメリットもある
+/// サーバー側が完成するまでFakeTaxRateRepositoryを使えば良い
 class FakeTaxRateRepository: TaxRateRepositoryProtocol {
     private var taxRate: Float
-    
+
     init(taxRate: Float) {
         self.taxRate = taxRate
     }
-    
+
     func load() -> Float { return taxRate }
     func save(taxRate: Float) { self.taxRate = taxRate }
 }
